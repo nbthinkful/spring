@@ -13,7 +13,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 public class MainConfiguration {
 
     @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public Person male() {
         Person malePerson = new Person();
         malePerson.setName("John");

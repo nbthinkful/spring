@@ -40,10 +40,5 @@ public class Process {
         System.out.println("Running the process service:");
         processService.performOperation();
         System.out.println("\r\n------------------------------------------\r\n");
-
-        male.setName("Another");
-        if (anotherMale.getName().equals("Another")) {
-            System.out.println("Alert: Male Person is singleton. Switch to prototype scope so that every injection will create a different instance.");
-        }
     }
 }

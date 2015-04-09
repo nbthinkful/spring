@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("prod")
+//The prod profile can be triggered by adding
+//-Dspring.profiles.active="prod"
+//to the vm options when launching the Runner class
 public class ProductionProcessService implements ProcessService {
 
     @Override
