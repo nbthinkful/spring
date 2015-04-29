@@ -1,7 +1,7 @@
-package com.thinkful.batch;
+package com.thinkful.spring;
 
-import com.thinkful.batch.model.Person;
-import com.thinkful.batch.service.ProcessService;
+import com.thinkful.spring.model.Person;
+import com.thinkful.spring.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

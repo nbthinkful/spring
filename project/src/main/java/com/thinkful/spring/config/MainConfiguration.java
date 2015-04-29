@@ -1,6 +1,6 @@
-package com.thinkful.batch.config;
+package com.thinkful.spring.config;
 
-import com.thinkful.batch.model.Person;
+import com.thinkful.spring.model.Person;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;

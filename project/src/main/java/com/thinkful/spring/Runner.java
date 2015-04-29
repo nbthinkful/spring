@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.thinkful.batch;
+package com.thinkful.spring;
 
-import com.thinkful.batch.config.MainConfiguration;
+import com.thinkful.spring.config.MainConfiguration;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;

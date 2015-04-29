@@ -1,6 +1,7 @@
-package com.thinkful.batch;
+package com.thinkful.spring;
 
-import com.thinkful.batch.config.MainConfiguration;
+
+import com.thinkful.spring.config.MainConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
