@@ -1,6 +1,6 @@
-package com.thinkful.batch.service.impl;
+package com.thinkful.spring.service.impl;
 
-import com.thinkful.batch.service.ProcessService;
+import com.thinkful.spring.service.ProcessService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

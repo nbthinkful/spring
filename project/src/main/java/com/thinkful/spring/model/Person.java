@@ -1,4 +1,4 @@
-package com.thinkful.batch.model;
+package com.thinkful.spring.model;
 
 import lombok.Builder;
 import lombok.Data;

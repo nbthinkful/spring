@@ -1,4 +1,4 @@
-package com.thinkful.batch.service;
+package com.thinkful.spring.service;
 
 /**
  * Created by neville on 09/04/15.
