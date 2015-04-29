@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>di</artifactId>
+	<artifactId>orm</artifactId>
 	<groupId>com.thinkful</groupId>
-	<name>Dependency Injection Tutorial</name>
-	<description>Thinkful tutorial to teach the concepts of dependency injection</description>
+	<name>Object Relational Mapping (ORM) Tutorial</name>
+	<description>Thinkful tutorial to teach the concepts of Object Relational Mapping</description>
 	<version>1.0-SNAPSHOT</version>
 
 	<!-- using Spring-boot quick start http://projects.spring.io/spring-boot/#quick-start -->
@@ -19,6 +19,8 @@
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<lombok.version>1.16.2</lombok.version>
 		<junit.version>4.11</junit.version>
+		<hibernate.version>4.3.9.Final</hibernate.version>
+		<hsqldb.version>1.8.0.10</hsqldb.version>
 	</properties>
 
 	<dependencyManagement>
@@ -41,11 +43,51 @@
 			<version>${junit.version}</version>
 		</dependency>
 
+		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
 
+		<!-- Persistence Start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+<!--
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.1-GA</version>
+		</dependency>
+-->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+
+		<!-- Persistence End -->
+
+		<!-- validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+		</dependency>
+
+		<!-- Spring Test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
