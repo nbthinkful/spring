@@ -27,6 +27,8 @@ public class Runner {
 
     public static void main(String[] args) throws Exception {
 
+        System.out.println("Spring Dependency Injection Tutorial");
+
         ConfigurableApplicationContext context = SpringApplication.run(MainConfiguration.class, args);
 
         ConfigurableEnvironment environment = context.getEnvironment();
