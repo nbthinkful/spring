@@ -32,6 +32,8 @@ public class Process {
             System.out.println("\r\n------------------------------------------\r\n");
 
             Vehicle vehicle = vehicleService.createVehicle(model, "Red");
+            System.out.println("Vehicle: " + vehicle.toString());
+            System.out.println("\r\n------------------------------------------\r\n");
 
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
