@@ -1,44 +1,45 @@
 package com.thinkful.spring;
 
-import com.thinkful.spring.model.Person;
-import com.thinkful.spring.service.ProcessService;
+import com.thinkful.spring.entity.Vehicle;
+import com.thinkful.spring.entity.VehicleModel;
+import com.thinkful.spring.service.VehicleModelService;
+import com.thinkful.spring.service.VehicleService;
+import com.thinkful.spring.utils.SchemaGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Process {
 
     @Autowired
-    @Qualifier("male")
-    Person male;
+    VehicleModelService vehicleModelService;
 
     @Autowired
-    @Qualifier("male")
-    Person anotherMale;
-
-    @Autowired
-    @Qualifier("female")
-    Person female;
-
-    @Autowired
-    ProcessService processService;
-
-    @Value("${application.name}")
-    String applicationName;
+    VehicleService vehicleService;
 
     public void execute() {
-        System.out.println("Started Process Execution");
-        System.out.println(applicationName);
+        try {
+            System.out.println("Started Process Execution");
+            generateDDL();
 
-        System.out.println("MALE: " + male.toString());
-        System.out.println("\r\n------------------------------------------\r\n");
-        System.out.println("FEMALE: " + female.toString());
-        System.out.println("\r\n------------------------------------------\r\n");
+            VehicleModel model = vehicleModelService.createVehicleModel("hilux");
 
-        System.out.println("Running the process service:");
-        processService.performOperation();
-        System.out.println("\r\n------------------------------------------\r\n");
+            System.out.println("Model: " + model.toString());
+            System.out.println("\r\n------------------------------------------\r\n");
+
+            VehicleModel anotherModel = vehicleModelService.createVehicleModel("another");
+            System.out.println("Model: " + anotherModel.toString());
+            System.out.println("\r\n------------------------------------------\r\n");
+
+            Vehicle vehicle = vehicleService.createVehicle(model, "Red");
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+    }
+
+    public void generateDDL() throws Exception {
+        SchemaGenerator gen = new SchemaGenerator("com.thinkful.spring.entity");
+        gen.generate(SchemaGenerator.Dialect.POSTGRESQL,"/tmp/");
     }
 }

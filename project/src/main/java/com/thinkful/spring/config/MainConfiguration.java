@@ -1,41 +1,13 @@
 package com.thinkful.spring.config;
 
-import com.thinkful.spring.model.Person;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.thinkful")
 @PropertySource({"classpath:application.properties"})
 public class MainConfiguration {
-
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public Person male() {
-        Person malePerson = new Person();
-        malePerson.setName("John");
-        malePerson.setSurname("Doe");
-        malePerson.setAge(20);
-
-        return malePerson;
-    }
-
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public Person female() {
-        Person femalePerson = new Person();
-        femalePerson.setName("Jane");
-        femalePerson.setSurname("Doe");
-        femalePerson.setAge(18);
-
-        return femalePerson;
-    }
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 }
