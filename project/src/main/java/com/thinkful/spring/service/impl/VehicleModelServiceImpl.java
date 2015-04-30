@@ -31,6 +31,15 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     }
 
     @Override
+    @Transactional
+    public VehicleModel updateVehicleModel(VehicleModel vehicleModel) {
+        Preconditions.checkArgument(vehicleModel != null, "vehicle model cannot be null");
+        Preconditions.checkArgument(vehicleModel.getId() > 0, "vehicle model's id should be greater than zero");
+
+        return vehicleModelDao.update(vehicleModel);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<VehicleModel> findAllVehicleModels() {
         return vehicleModelDao.findAll();

@@ -10,6 +10,8 @@ public interface VehicleModelService {
 
     VehicleModel createVehicleModel(String modelName);
 
+    VehicleModel updateVehicleModel(VehicleModel vehicleModel);
+
     List<VehicleModel> findAllVehicleModels();
 
     void deleteVehicleModel(int vehicleModelId);

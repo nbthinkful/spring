@@ -40,6 +40,17 @@ public class VehicleModelServiceTest {
     }
 
     @Test
+    public void testVehicleModelUpdate() {
+        VehicleModel model = vehicleModelService.createVehicleModel("model");
+        model.setName("updated");
+
+        model = vehicleModelService.updateVehicleModel(model);
+        Assert.assertEquals("updated",model.getName());
+
+        vehicleModelService.deleteVehicleModel(model.getId());
+    }
+
+    @Test
     public void testVehicleModelFinding() {
         //Step 1... Checking that there are no vehicle models in the database
         List<VehicleModel> allModels = vehicleModelService.findAllVehicleModels();
