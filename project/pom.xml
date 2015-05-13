@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>orm</artifactId>
+	<artifactId>api</artifactId>
 	<groupId>com.thinkful</groupId>
-	<name>Object Relational Mapping (ORM) Tutorial</name>
-	<description>Thinkful tutorial to teach the concepts of Object Relational Mapping</description>
+	<name>Web Api Tutorial</name>
+	<description>Thinkful tutorial to teach the concepts of Spring REST API</description>
 	<version>1.0-SNAPSHOT</version>
 
 	<!-- using Spring-boot quick start http://projects.spring.io/spring-boot/#quick-start -->
@@ -23,6 +23,9 @@
 		<hsqldb.version>1.8.0.10</hsqldb.version>
 		<guava.version>18.0</guava.version>
 		<postgresql.version>9.4-1201-jdbc41</postgresql.version>
+        <jackson.version>2.5.2</jackson.version>
+        <joda.version>2.7</joda.version>
+        <orika.version>1.4.5</orika.version>
 	</properties>
 
 	<dependencyManagement>
@@ -56,7 +59,7 @@
 		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-batch</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<!-- Persistence Start -->
@@ -108,6 +111,52 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Contract -->
+		<dependency>
+			<groupId>com.thinkful</groupId>
+			<artifactId>contract</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+        <!-- Jackson Mapping -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- Joda Datetime -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.version}</version>
+        </dependency>
+
+        <!-- Orika -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>${orika.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>

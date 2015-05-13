@@ -27,27 +27,6 @@ public class Runner {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Spring Dependency Injection Tutorial");
-
         ConfigurableApplicationContext context = SpringApplication.run(MainConfiguration.class, args);
-
-        ConfigurableEnvironment environment = context.getEnvironment();
-        String activeProfile = System.getProperty("spring.profiles.active");
-        if (activeProfile != null) {
-            environment.setActiveProfiles(activeProfile);
-        }
-
-        BeanFactory beanFactory = context.getBeanFactory();
-
-        Process process = beanFactory.getBean(Process.class);
-
-        process.execute();
-
-        SpringApplication.exit(context, new ExitCodeGenerator() {
-            @Override
-            public int getExitCode() {
-                return 0;
-            }
-        });
     }
 }

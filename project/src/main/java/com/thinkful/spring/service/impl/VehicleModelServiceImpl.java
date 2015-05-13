@@ -41,6 +41,12 @@ public class VehicleModelServiceImpl implements VehicleModelService {
 
     @Override
     @Transactional(readOnly = true)
+    public VehicleModel findById(int id) {
+        return vehicleModelDao.findById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<VehicleModel> findAllVehicleModels() {
         return vehicleModelDao.findAll();
     }

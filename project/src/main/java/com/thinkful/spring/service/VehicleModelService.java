@@ -12,6 +12,8 @@ public interface VehicleModelService {
 
     VehicleModel updateVehicleModel(VehicleModel vehicleModel);
 
+    VehicleModel findById(int id);
+
     List<VehicleModel> findAllVehicleModels();
 
     void deleteVehicleModel(int vehicleModelId);
