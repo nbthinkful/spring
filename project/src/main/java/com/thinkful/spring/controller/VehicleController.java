@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -53,11 +54,40 @@ public class VehicleController {
         return new ResponseEntity<VehicleDto>(vehicleDto,HttpStatus.OK);
     }
 
+    @RequestMapping(value="/vehicle", method=RequestMethod.PUT)
+    public HttpEntity<VehicleDto> updateVehicle(@RequestBody VehiclePersistenceRequest vehiclePersistenceRequest) {
+        Preconditions.checkArgument(vehiclePersistenceRequest != null);
+
+        Vehicle vehicleEntity = vehicleService.findVehicleById(vehiclePersistenceRequest.getId());
+        Preconditions.checkArgument(vehicleEntity != null, "No matching vehicle found");
+
+        if (vehicleEntity.getModel().getId() != vehiclePersistenceRequest.getModelId()) {
+            VehicleModel vehicleModel = vehicleModelService.findById(vehiclePersistenceRequest.getModelId());
+            Preconditions.checkArgument(vehicleModel != null, "No matching vehicle model found");
+
+            vehicleEntity.setModel(vehicleModel);
+        }
+
+        vehicleEntity.setColor(vehiclePersistenceRequest.getColor());
+
+        Vehicle updatedVehicleEntity = vehicleService.updateVehicle(vehicleEntity);
+        VehicleDto updatedVehicleDto = mapper.map(updatedVehicleEntity, VehicleDto.class);
+
+        return new ResponseEntity<VehicleDto>(updatedVehicleDto, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/vehicle-models",method = RequestMethod.GET)
     public HttpEntity<List<VehicleModelDto>> getAllVehicleModels() {
 
         List<VehicleModel> vehicleModels = vehicleModelService.findAllVehicleModels();
 
+//        List<VehicleModelDto> vehicleModelDtos = new ArrayList<VehicleModelDto>();
+//        for (VehicleModel vehicleModel: vehicleModels) {
+//            VehicleModelDto vehicleModelDto = new VehicleModelDto();
+//            vehicleModelDto.setId(vehicleModel.getId());
+//            vehicleModelDto.setName(vehicleModel.getName());
+//            vehicleModelDtos.add(vehicleModelDto);
+//        }
         List<VehicleModelDto> vehicleModelDtos = mapper.mapAsList(vehicleModels,VehicleModelDto.class);
 
         return new ResponseEntity<List<VehicleModelDto>>(vehicleModelDtos, HttpStatus.OK);

@@ -32,9 +32,23 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    @Transactional
+    public Vehicle updateVehicle(Vehicle vehicle) {
+        Preconditions.checkArgument(vehicle != null, "Vehicle should not be null");
+
+        return vehicleDao.update(vehicle);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Vehicle> findAllVehicles() {
         return vehicleDao.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Vehicle findVehicleById(long id) {
+        return vehicleDao.findById(id);
     }
 
     @Override
