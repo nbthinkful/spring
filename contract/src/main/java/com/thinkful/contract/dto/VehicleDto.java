@@ -8,5 +8,5 @@ public class VehicleDto {
     private Long id;
     private VehicleModelDto model;
     private String color;
-    private DateTime date = DateTime.now();
+//    private DateTime date = DateTime.now();
 }

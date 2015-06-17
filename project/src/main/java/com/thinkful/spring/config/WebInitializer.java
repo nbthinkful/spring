@@ -15,11 +15,12 @@ public class WebInitializer implements WebApplicationInitializer {
 
     public void onStartup(ServletContext servletContext) throws ServletException {
 
-//        servletContext.setInitParameter("spring.profiles.default", Profiles.PRODUCTION);
-
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(MainConfiguration.class);
         ctx.setServletContext(servletContext);
+
+        //Define the default profile
+        servletContext.setInitParameter("spring.profiles.default", Profiles.PRODUCTION);
 
         Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");

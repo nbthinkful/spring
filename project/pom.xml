@@ -7,16 +7,12 @@
 	<name>Web Api Tutorial</name>
 	<description>Thinkful tutorial to teach the concepts of Spring REST API</description>
 	<version>1.0-SNAPSHOT</version>
-
-	<!-- using Spring-boot quick start http://projects.spring.io/spring-boot/#quick-start -->
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.3.RELEASE</version>
-	</parent>
+	<packaging>war</packaging>
 
 	<properties>
 		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring.integration.version>4.0.4.RELEASE</spring.integration.version>
+
 		<lombok.version>1.16.2</lombok.version>
 		<junit.version>4.11</junit.version>
 		<hibernate.version>4.3.9.Final</hibernate.version>
@@ -26,6 +22,15 @@
         <jackson.version>2.5.2</jackson.version>
         <joda.version>2.7</joda.version>
         <orika.version>1.4.5</orika.version>
+
+		<!-- Servlet properties -->
+		<servlet.version>3.0.1</servlet.version>
+		<jsp.api.version>2.2</jsp.api.version>
+		<jstl.version>1.2</jstl.version>
+
+		<!-- Logging properties -->
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
 	</properties>
 
 	<dependencyManagement>
@@ -56,11 +61,45 @@
 			<version>${guava.version}</version>
 		</dependency>
 
-		<!-- Spring Boot -->
+		<!-- Servlet API, JSTL -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- Spring dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-core</artifactId>
+			<version>${spring.integration.version}</version>
+		</dependency>
+
 
 		<!-- Persistence Start -->
 		<dependency>
@@ -112,6 +151,23 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
 		<!-- Contract -->
 		<dependency>
 			<groupId>com.thinkful</groupId>
@@ -160,13 +216,75 @@
 	</dependencies>
 
 	<build>
+		<!--<finalName>${project.name}</finalName>-->
+		<finalName>ROOT</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+					<include>**/*.ini</include>
+				</includes>
+				<excludes>
+					<exclude>**/logback.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<!--<path>/${project.build.finalName}</path>-->
+					<path>/</path>
+					<port>8080</port>
+					<update>true</update>
+					<contextReloadable>true</contextReloadable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<!-- When built in OpenShift the 'openshift' profile will be used when
+				invoking mvn. -->
+			<!-- Use this profile for any OpenShift specific customization your app
+				will need. -->
+			<!-- By default that is to put the resulting archive into the 'webapps'
+				folder. -->
+			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+			<id>openshift</id>
+			<build>
+				<finalName>hackaton</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.4</version>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<outputDirectory>webapps</outputDirectory>
+							<warName>ROOT</warName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<repositories>
 		<repository>
