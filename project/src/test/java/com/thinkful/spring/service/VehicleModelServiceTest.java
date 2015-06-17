@@ -18,7 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestConfiguration.class})
 @ActiveProfiles(profiles = Profiles.DEFAULT)
-public class VehicleModelServiceTest extends WebMvcConfigurerAdapter {
+public class VehicleModelServiceTest {
 
     @Autowired
     VehicleModelService vehicleModelService;
