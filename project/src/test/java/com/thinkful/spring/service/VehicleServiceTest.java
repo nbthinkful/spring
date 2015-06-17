@@ -21,7 +21,6 @@ import java.util.List;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestConfiguration.class})
 @ActiveProfiles(profiles = Profiles.DEFAULT)
-//@WebAppConfiguration
 public class VehicleServiceTest extends WebMvcConfigurerAdapter {
 
     @Autowired
