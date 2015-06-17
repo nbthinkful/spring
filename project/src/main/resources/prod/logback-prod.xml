@@ -11,7 +11,6 @@
     </appender>
 
     <appender name="production-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--<File>/var/lib/openshift/558062b850044677410000a9/app-root/logs/application.log</File>-->
         <File>${OPENSHIFT_LOG_DIR}/application.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
