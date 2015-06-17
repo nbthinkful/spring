@@ -21,7 +21,7 @@ public class WebInitializer implements WebApplicationInitializer {
         ctx.setServletContext(servletContext);
 
         servletContext.addFilter("Spring OpenSessionInViewFilter", new OpenSessionInViewFilter());
-        
+
         //Define the default profile
         servletContext.setInitParameter("spring.profiles.default", Profiles.PRODUCTION);
 
