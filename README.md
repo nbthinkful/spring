@@ -1,4 +1,4 @@
-# spring
+# Spring Tutorial
 This is a github project that is used to illustrate the features of Spring Framework
 
 There are 4 branches in this tutorial, each branch provides an incremental approach towards a Rest API written in Java that Users Spring Dependency Injection Framework and uses hibernate to connect to an ORM layer.
