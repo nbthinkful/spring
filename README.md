@@ -7,3 +7,19 @@ There are 4 branches in this tutorial, each branch provides an incremental appro
  - Step_2-ORM: This is an implementation of a console application that uses Spring Framework's Dependency Injection together with hibernate ORM framework to interact with the database.
  - Step_3-API: This is an implementation of a Spring Boot Web Application that provides a REST API integration that exposes the ORM layer implemented in Step 2 over REST
  - Step_4-OPENSHIFT: This is an implementation of The REST API layer that could be deployed on Redhat Openshift. As a side-note, Redhat Openshift have recently updated their cloud solution so it's very likely that the changes might break this deployment.
+
+After cloning this repository, you can switch between branches using the following commands: -
+
+## Step 1: Dependency Injection ##
+`git checkout Step_1-DI`
+
+## Step 2: ORM ##
+`git checkout Step_2-ORM`
+
+## Step 3: API ##
+`git checkout Step_3-API`
+
+## Step 4: Openshift Deployment ##
+`git checkout Step_4-OPENSHIFT`
+
+Once the branch is switched, read the branch's README.md file for specific branch documentation
