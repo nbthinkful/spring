@@ -2,21 +2,26 @@ package com.thinkful.spring.service;
 
 import com.thinkful.spring.config.MainConfiguration;
 import com.thinkful.spring.config.Profiles;
+import com.thinkful.spring.config.TestMainConfiguration;
+import com.thinkful.spring.config.WebConfiguration;
 import com.thinkful.spring.entity.VehicleModel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {MainConfiguration.class})
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestMainConfiguration.class})
 @ActiveProfiles(profiles = Profiles.DEFAULT)
+@WebAppConfiguration
 public class VehicleModelServiceTest {
 
     @Autowired
