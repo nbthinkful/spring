@@ -20,8 +20,8 @@ This will create reports in folder `project/target/surefire-reports`.
 
 ## Execution:
 Use the following command to execute the artifact  
-`cd project`  
-Launch in default(dev) Mode: `mvn exec:java`  
+
+Launch in default(dev) Mode: `mvn clean install exec:java`  
 
 This will execute the artifact and produce the following output: -
 
@@ -41,7 +41,7 @@ I am the DEVELOPMENT PROCESS SERVICE
 
 ------------------------------------------
 ```
-To Launch in Production Mode: `mvn exec:java -Dspring.profiles.active=prod`    
+To Launch in Production Mode: `mvn clean install exec:java -Dspring.profiles.active=prod`    
 
 ## Implementation Details:
 The objective of this tutorial is to demonstrate the introduction of Spring Framework's Dependency Injection. The application starts by executing the `com.thinkful.spring.Runner` that uses Spring Boot to initialise the console application and provide it with the `com.thinkful.spring.config.MainConfiguration` configuration class. The configuration class is responsible of connecting all the Spring modules together, and also is loading an application.properties file that is embedded within the resources folder. For demonstration purposes, the `MainConfiguration` is returning 2 Java Beans of type `com.thinkful.spring.model.Person` in 2 different modes. If the qualifier is `male`, then it injects the instance as a Prototype, or else a new instance every time or if the qualifier is `female`, the instance is injected as a Singleton Design Pattern, meaning that only 1 instance will be available for the whole instance of the Application.  
