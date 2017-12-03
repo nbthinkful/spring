@@ -19,7 +19,8 @@ This will create reports in folder `project/target/surefire-reports`.
 ## Execution:
 Use the following command to execute the artifact
 `cd project`
-`mvn exec:java`
+Launch in default(dev) Mode: `mvn exec:java`
+Launch in Prod Mode: `mvn exec:java -Dspring.profiles.active=prod`
 This will execute the artifact and produce the following output: -
 
 ```
@@ -38,4 +39,6 @@ I am the DEVELOPMENT PROCESS SERVICE
 
 ------------------------------------------
 ```
+## Implementation Details:
+
 
