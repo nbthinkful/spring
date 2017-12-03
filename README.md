@@ -23,8 +23,8 @@ This will create reports in folder `project/target/surefire-reports`.
 ## Execution:
 Use the following command to execute the artifact  
 
-Launch in default(dev) Mode: `mvn exec:java`  
-To Launch in Production Mode: `mvn exec:java -Dspring.profiles.active=prod`    
+Launch in default(dev) Mode: `mvn clean install exec:java`  
+To Launch in Production Mode: `mvn clean install exec:java -Dspring.profiles.active=prod`    
 
 This will execute the artifact and produce the following output: -  
 ```
